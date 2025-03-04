@@ -16,4 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Printer"
 include(":shared")
-include(":composeApp")
+include(":demo:composeApp")
