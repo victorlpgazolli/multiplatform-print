@@ -6,8 +6,8 @@ import platform.UIKit.UIPrintInfoOutputType
 import platform.UIKit.UIPrintInteractionController
 
 
-actual class Printer {
-    actual fun print(filePath: String) {
+class IosPrinter(): Printer {
+    override fun print(filePath: String) {
         val url = NSURL.fileURLWithPath(filePath)
         val printController = UIPrintInteractionController.sharedPrintController()
 
@@ -21,3 +21,5 @@ actual class Printer {
         printController.presentAnimated(true, completionHandler = null)
     }
 }
+
+actual fun buildPrinter(): Printer = IosPrinter()

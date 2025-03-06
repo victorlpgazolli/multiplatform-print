@@ -1,6 +1,8 @@
 package dev.victorlpgazolli.printer
 
-actual class Printer actual constructor() {
-    actual fun print(filePath: String) {
+class WasmPrinter(): Printer {
+    override fun print(filePath: String) {
     }
 }
+
+actual fun buildPrinter(): Printer = WasmPrinter()

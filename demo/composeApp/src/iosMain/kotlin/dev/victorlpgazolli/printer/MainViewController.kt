@@ -35,14 +35,7 @@ fun createFile(fileName: String, content: String): String {
 
     return if (success) filePath else "Error: Unable to write file"
 }
+
 fun MainViewController() = ComposeUIViewController {
-    createFile("file.txt", "teste")
-    val paths = NSSearchPathForDirectoriesInDomains(
-        directory = NSDocumentDirectory,
-        domainMask = NSUserDomainMask,
-        expandTilde = true
-    )
-    App(){
-        Printer().print("${paths.firstOrNull()}/file.txt")
-    }
+    App()
 }

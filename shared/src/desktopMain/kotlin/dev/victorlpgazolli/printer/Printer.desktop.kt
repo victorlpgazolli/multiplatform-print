@@ -5,8 +5,8 @@ import javax.print.DocFlavor
 import javax.print.PrintServiceLookup
 import javax.print.SimpleDoc
 
-actual class Printer {
-    actual fun print(filePath: String) {
+class DesktopPrinter(): Printer {
+    override fun print(filePath: String) {
         val document = SimpleDoc(
             FileInputStream(filePath),
             DocFlavor.INPUT_STREAM.AUTOSENSE,
@@ -18,3 +18,5 @@ actual class Printer {
         }
     }
 }
+
+actual fun buildPrinter(): Printer = DesktopPrinter()

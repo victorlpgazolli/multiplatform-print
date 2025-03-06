@@ -5,10 +5,9 @@ import android.print.PrintManager
 import java.io.File
 import java.io.InputStream
 
-actual class Printer(
-    private val context: Context
-) {
-    actual fun print(filePath: String) {
+class AndroidPrinter(): Printer {
+    override fun print(filePath: String) {
+        val context = ContextProvider().context ?: return
         val printManager = context.getSystemService(Context.PRINT_SERVICE) as PrintManager
         val jobName = "Printer"
         val fileStream: InputStream = File(filePath).inputStream()
@@ -19,3 +18,5 @@ actual class Printer(
         )
     }
 }
+
+actual fun buildPrinter(): Printer = AndroidPrinter()

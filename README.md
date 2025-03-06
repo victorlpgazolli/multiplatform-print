@@ -14,30 +14,25 @@ expect class Printer() {
 
 Each platform provides its own implementation.
 
+## Project Roadmap
+
+- [x] basic implementation
+- [] CI/CD setup
+- [] add support for more file types (using file convertion)
+- [] add support for wasmJs target
+- [] add support for printing `@Composables`
+
 ## Demo
 
-The project includes a `:demo` module that can be run on Android, iOS, and Desktop to test printing.
-
-### Running the Demo
-
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/seu-usuario/multiplatform-print.git
-   cd multiplatform-print
-   ```
-
-2. **Run on Android:**
-wip
-
-3. **Run on iOS:**
-wip
-
-4. **Run on Desktop:**
-```sh
-./gradlew :demo:composeApp:run
-```
+The project includes a `:demo` module that can be run on Android, iOS, and Desktop.
 
 ## ⚠️ Platform Limitations
 
-wip
+
+| Platform | Current file extension support |
+|----------|--------------------------|
+| Android  | pdf |
+| iOS      | pdf |
+| Desktop  | pdf |
+
 
