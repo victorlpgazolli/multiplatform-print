@@ -17,6 +17,9 @@ kotlin = "2.1.0"
 kotlinx-coroutines = "1.10.1"
 jetbrainsKotlinJvm = "1.9.0"
 maven-publish = "0.30.0"
+okio = "3.9.0"
+kotlin-io = "0.6.0"
+kotlin-io-okio = "0.7.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -33,6 +36,9 @@ androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", nam
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 skiko = { group = "org.jetbrains.skiko", name = "skiko", version = "0.8.25" }
+okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
+kotlin-io = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlin-io" }
+kotlin-io-okio = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-okio", version.ref = "kotlin-io-okio" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

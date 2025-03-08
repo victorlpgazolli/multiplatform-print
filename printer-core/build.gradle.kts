@@ -84,6 +84,9 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+            implementation(libs.okio)
+            implementation(libs.kotlin.io)
+            implementation(libs.kotlin.io.okio)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(libs.androidx.lifecycle.viewmodel)

@@ -4,6 +4,7 @@ import ScreenshotArea
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -41,6 +42,15 @@ fun App() {
 
 
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+            Button(
+                onClick = {
+                    screenshot.value?.let {
+                        PrinterImpl().print(it)
+                    }
+                }
+            ) {
+                Text("print")
+            }
             ScreenshotArea(screenshotState) {
                 Text(
                     text = "Texto exemplo, contagem atual: $count",

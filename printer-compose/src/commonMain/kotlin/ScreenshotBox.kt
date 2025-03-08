@@ -1,5 +1,4 @@
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,13 +14,17 @@ fun ScreenshotArea(
     Box(
         modifier = Modifier
             .drawWithContent {
+
                 screenshotState.graphicsLayer.record {
+                    this@drawWithContent.drawRect(
+                        color = Color.White,
+                        size = size
+                    )
                     this@drawWithContent.drawContent()
                 }
                 drawLayer(screenshotState.graphicsLayer)
 
             }
-            .background(Color.White)
 
     ) {
         content()
