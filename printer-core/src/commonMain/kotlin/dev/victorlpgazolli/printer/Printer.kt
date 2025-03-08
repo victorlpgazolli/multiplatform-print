@@ -1,5 +1,7 @@
 package dev.victorlpgazolli.printer
 
+import androidx.compose.ui.graphics.ImageBitmap
+
 
 interface Printer {
 //  val supportedFileTypes: List<String>
@@ -16,5 +18,12 @@ class PrinterImpl(
     fun print(filePath: String) {
         // todo add logs
         printer.print(filePath)
+    }
+
+    fun print(imageBitmap: ImageBitmap) {
+//        val file = File(
+//            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+//            "screenshot-${System.currentTimeMillis()}.png"
+//        )
     }
 }

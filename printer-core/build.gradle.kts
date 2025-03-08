@@ -14,6 +14,9 @@ plugins {
     alias(libs.plugins.mavenPublish)
 }
 
+group = "dev.victorlpgazolli.printer_core"
+version = "0.0.1"
+
 kotlin {
 
     publishing {
