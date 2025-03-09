@@ -10,6 +10,7 @@ captures/
 *~
 *.swp
 *.iml
+.idea/artifacts/
 .idea/caches/
 .idea/libraries/
 .idea/shelf/
