@@ -110,7 +110,7 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "dev.victorlpgazolli.printer.MainKt"
+        mainClass = "dev.victorlpgazolli.printer.demo.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
