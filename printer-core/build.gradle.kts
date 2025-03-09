@@ -25,7 +25,7 @@ kotlin {
                 url = URI("https://maven.pkg.github.com/victorlpgazolli/multiplatform-print")
                 credentials {
                     username = System.getenv("GITHUB_ACTOR")
-                    password = System.getenv("GITHUB_TOKEN")
+                    password = System.getenv("PUBLISH_TOKEN")
                 }
             }
         }
