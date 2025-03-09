@@ -81,6 +81,7 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
+            implementation(libs.print)
             api(libs.koin.android)
         }
         commonMain.dependencies {

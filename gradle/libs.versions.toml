@@ -22,6 +22,7 @@ kotlin-io = "0.6.0"
 kotlin-io-okio = "0.7.0"
 koin-version = "4.0.2"
 ksp-version = "2.0.21-1.0.28"
+print = "1.0.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -44,6 +45,7 @@ kotlin-io-okio = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-okio", ve
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin-version" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin-version" }
 koin-compose = {module = "io.insert-koin:koin-compose", version.ref = "koin-version"}
+print = { group = "androidx.print", name = "print", version.ref = "print" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
