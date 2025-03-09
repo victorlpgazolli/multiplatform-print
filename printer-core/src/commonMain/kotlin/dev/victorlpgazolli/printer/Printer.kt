@@ -9,9 +9,6 @@ import okio.buffer
 
 
 interface PlatformPrinter {
-//  val supportedFileTypes: List<String>
-//  fun canPrint(filePath: String): Boolean
-//  fun createPDFWrapper(filePath: String): String
     fun print(filePath: String)
 }
 
