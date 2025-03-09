@@ -1,9 +1,7 @@
 
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import java.net.URI
 
 plugins {
@@ -12,6 +10,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.mavenPublish)
+    alias(libs.plugins.kotlinKsp)
 }
 
 group = "dev.victorlpgazolli.printer_core"
@@ -57,36 +56,39 @@ kotlin {
         }
     }
 
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        moduleName = "dev.victorlpgazolli.printer"
-        browser {
-            val rootDirPath = project.rootDir.path
-            val projectDirPath = project.projectDir.path
-            commonWebpackConfig {
-                outputFileName = "kmpprinter.js"
-                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
-                    static = (static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside browser
-                        add(rootDirPath)
-                        add(projectDirPath)
-                    }
-                }
-            }
-        }
-        binaries.executable()
-    }
+//    @OptIn(ExperimentalWasmDsl::class)
+//    wasmJs {
+//        moduleName = "dev.victorlpgazolli.printer"
+//        browser {
+//            val rootDirPath = project.rootDir.path
+//            val projectDirPath = project.projectDir.path
+//            commonWebpackConfig {
+//                outputFileName = "kmpprinter.js"
+//                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+//                    static = (static ?: mutableListOf()).apply {
+//                        // Serve sources to debug inside browser
+//                        add(rootDirPath)
+//                        add(projectDirPath)
+//                    }
+//                }
+//            }
+//        }
+//        binaries.executable()
+//    }
 
     sourceSets {
         val desktopMain by getting
 
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
+            api(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(libs.okio)
             implementation(libs.kotlin.io)
             implementation(libs.kotlin.io.okio)
+            api(libs.koin.core)
+            api(libs.koin.compose)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(libs.androidx.lifecycle.viewmodel)
