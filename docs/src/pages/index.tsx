@@ -3,16 +3,17 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
+
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
+          <img height={90} src={siteConfig.favicon}></img>
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
@@ -36,9 +37,6 @@ export default function Home(): ReactNode {
       title={`${siteConfig.title} Docs`}
       description="Kotlin Multiplatform Lib for printing stuff">
       <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
     </Layout>
   );
 }
