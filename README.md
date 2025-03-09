@@ -1,4 +1,10 @@
-# 🚧 WIP: Multiplatform Print
+# <a href='https://multiplatform-print.victorlpgazolli.dev'><img src='docs/static/img/logo.png' height='60' alt='Multiplatform print logo' aria-label='title' style="display: flex;align-items: center;"/>Kotlin Multiplatform Print</a>
+
+[![Docs](https://github.com/victorlpgazolli/multiplatform-print/actions/workflows/docs-deploy.yml/badge.svg)](https://github.com/victorlpgazolli/multiplatform-print/actions/workflows/docs-deploy.yml)
+[![Publish](https://github.com/victorlpgazolli/multiplatform-print/actions/workflows/publish.yml/badge.svg)](https://github.com/victorlpgazolli/multiplatform-print/actions/workflows/publish.yml)
+![badge](https://img.shields.io/badge/platform-android-blue)
+![badge](https://img.shields.io/badge/platform-ios-blue)
+![badge](https://img.shields.io/badge/platform-desktop-blue)
 
 **Multiplatform Print** is a Kotlin Multiplatform library for printing files on Android, iOS, and Desktop.
 
@@ -149,7 +155,7 @@ fun App() {
 ## Project Roadmap
 
 - [x] basic implementation
-- [ ] CI/CD setup
+- [x] CI/CD setup
 - [x] add support for more file types (using file convertion)
 - [ ] add support for wasmJs target
 - [x] add support for printing `@Composables`
