@@ -5,7 +5,7 @@ import javax.print.DocFlavor
 import javax.print.PrintServiceLookup
 import javax.print.SimpleDoc
 
-class DesktopPrinter(): Printer {
+class DesktopPrinter(): PlatformPrinter {
     override fun print(filePath: String) {
         val document = SimpleDoc(
             FileInputStream(filePath),
@@ -18,5 +18,3 @@ class DesktopPrinter(): Printer {
         }
     }
 }
-
-actual fun buildPrinter(): Printer = DesktopPrinter()
