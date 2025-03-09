@@ -18,6 +18,7 @@ You can see the library in action by running the `:demo` module, but ill provide
 
 ## Demo:
 
+https://github.com/victorlpgazolli/multiplatform-print/blob/master/docs/static/video/demo.mp4
 
 
 ## `printer-core`
@@ -25,7 +26,8 @@ You can see the library in action by running the `:demo` module, but ill provide
 Main package to print stuff, the library exposes a common API:
 ```kotlin
 interface Printer {
-//  send to printer any file, regardless of the extension. no error handling, ill just trust you in this one
+//  send to printer any file, regardless of the extension. 
+//  no error handling, ill just trust you in this one
     fun print(filePath: String)
     
 //  send to printer an ImageBitmap, in case you want to print a custom image

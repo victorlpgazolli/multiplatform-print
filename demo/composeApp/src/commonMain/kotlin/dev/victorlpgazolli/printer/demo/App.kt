@@ -49,7 +49,7 @@ fun Content() {
             },
             modifier = Modifier.padding(20.dp)
         ) {
-            Text("Print below content")
+            Text("Print content")
         }
         ScreenshotArea(screenshotState) {
             Demo()
