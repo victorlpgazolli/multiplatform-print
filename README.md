@@ -19,7 +19,10 @@ You can see the library in action by running the `:demo` module, but ill provide
 Main package to print stuff, the library exposes a common API:
 ```kotlin
 interface Printer {
+//  send to printer any file, regardless of the extension. no error handling, ill just trust you in this one
     fun print(filePath: String)
+    
+//  send to printer an ImageBitmap, in case you want to print a custom image
     fun print(imageBitmap: ImageBitmap)
 }
 ```
@@ -35,10 +38,12 @@ fun App() {
     Button(
         onClick = {
             val filePath = "/path/to/random/file"
-            printer.print(filePath) // print any file extension
+            // print any file extension
+            printer.print(filePath)
             
             val imageBitmap = ImageBitmap(100, 100)
-            printer.print(imageBitmap) // or just print an imageBitmap
+            // or just print an imageBitmap
+            printer.print(imageBitmap)
         }
     ) {
         Text("Send to printer!!!")
@@ -49,6 +54,34 @@ fun App() {
 ## `printer-compose`
 
 Library used to take screenshots of `@Composables` or just record them in a set time interval.
+
+```kotlin
+
+interface ScreenshotState {
+//  consider the following param as "frame rate", default 20ms 
+    val refreshScreenshotTimeout: Long
+    
+//  graphicsLayer used to draw the content of the composable to a ImageBitmap
+    val graphicsLayer: GraphicsLayer
+
+//  flow that emits the ImageBitmap of the current composable
+    fun startRecording(): Flow<ImageBitmap>
+    
+//  one-shot function that takes a screenshot of the current composable
+    suspend fun takeScreenshot(): ImageBitmap
+}
+
+// Composable that wraps the content to be recorded/taken a screenshot
+fun ScreenshotArea(
+    screenshotState: ScreenshotState,
+    content: @Composable () -> Unit,
+): Unit {}
+
+
+```
+
+
+### `printer-compose` Usage
 
 ```kotlin
 // screenshot usage:
@@ -62,7 +95,8 @@ fun App() {
         Button(
             onClick = {
                 coroutineScope.launch {
-                    val screenshot: ImageBitmap = screenshotState.takeScreenshot() // take a screenshot of the current value
+                    // take a screenshot of the current value:
+                    val screenshot: ImageBitmap = screenshotState.takeScreenshot()
                 }
             }
         ) { Text("Print below content") }
@@ -89,8 +123,8 @@ fun App() {
             count++
         }
     }
-    
-    val screenshotState by rememberScreenshotState(1000) // refreshScreenshotTimeout is optional, if not provided the default value is 20ms
+    // refreshScreenshotTimeout param is optional, if not provided the default value is 20ms
+    val screenshotState by rememberScreenshotState(1000)
         .startRecording()
         .collectAsState(null)
 
@@ -102,7 +136,8 @@ fun App() {
             )
         }
         ScreenshotArea(screenshotState) {
-            Text("Hello World. Count: $count") // when the count changes the UI, screenshotState will collect the new value
+            // when the count changes the UI, screenshotState will collect the new value
+            Text("Hello World. Count: $count") 
         }
     }
    
