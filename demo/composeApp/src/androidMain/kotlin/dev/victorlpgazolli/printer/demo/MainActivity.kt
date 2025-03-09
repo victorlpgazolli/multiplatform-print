@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import dev.victorlpgazolli.printer.App
 import dev.victorlpgazolli.printer.printerCommonDiModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.compose.KoinApplication
