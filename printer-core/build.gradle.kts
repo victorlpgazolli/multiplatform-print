@@ -13,14 +13,12 @@ plugins {
     alias(libs.plugins.kotlinKsp)
 }
 
-group = "dev.victorlpgazolli.printer_core"
+group = "dev.victorlpgazolli.multiplatform-print-core"
 version = "0.0.1"
 
 kotlin {
 
     publishing {
-
-    
         repositories {
             maven {
                 name = "GitHubPackages"
@@ -102,8 +100,12 @@ kotlin {
     }
 }
 
+val groupId = "dev.victorlpgazolli.multiplatform-print"
+val artifactId = "printer-core"
+val versionNumber = "0.0.1"
+
 android {
-    namespace = "dev.victorlpgazolli.printer"
+    namespace = "dev.victorlpgazolli.multiplatform_print_core"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
@@ -125,3 +127,35 @@ android {
     }
 }
 
+
+mavenPublishing {
+    coordinates(
+        groupId = groupId,
+        artifactId = artifactId,
+        version = versionNumber
+    )
+
+    pom {
+        name.set("Printer Core KMP Library")
+        description.set("Printer Core MultiPlatform Library")
+        inceptionYear.set("2025")
+        url.set("https://github.com/victorlpgazolli/multiplatform-print")
+
+        licenses {
+            license {
+                name.set("MIT")
+                url.set("https://opensource.org/licenses/MIT")
+            }
+        }
+
+        developers {
+            developer {
+                id.set("victorlpgazolli")
+            }
+        }
+
+        scm {
+            url.set("https://github.com/victorlpgazolli/multiplatform-print")
+        }
+    }
+}
