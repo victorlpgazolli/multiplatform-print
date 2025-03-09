@@ -18,8 +18,7 @@ You can see the library in action by running the `:demo` module, but ill provide
 
 ## Demo:
 
-![demo](https://github.com/victorlpgazolli/multiplatform-print/blob/master/docs/static/video/demo.mp4)
-
+https://github.com/user-attachments/assets/9b67fca0-09b5-410d-945d-2a0e5e2634b3
 
 ## `printer-core`
 
