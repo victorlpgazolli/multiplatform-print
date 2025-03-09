@@ -10,20 +10,29 @@ import kotlinx.coroutines.flow.flow
 @Composable
 fun rememberScreenshotState(refreshScreenshotTimeout: Long? = null): ScreenshotState {
     val graphicsLayer = rememberGraphicsLayer()
-    return remember { ScreenshotState(
+    return remember { ScreenshotStateImpl(
         refreshScreenshotTimeout = refreshScreenshotTimeout ?: 20L,
         graphicsLayer = graphicsLayer,
     ) }
 }
 
-
-class ScreenshotState internal constructor(
-    val refreshScreenshotTimeout: Long,
-    val graphicsLayer: GraphicsLayer,
-) {
+interface ScreenshotState {
+    val refreshScreenshotTimeout: Long
+    val graphicsLayer: GraphicsLayer
 
     @Composable
-    fun startRecording(): Flow<ImageBitmap> {
+    fun startRecording(): Flow<ImageBitmap>
+    suspend fun takeScreenshot(): ImageBitmap
+}
+
+
+class ScreenshotStateImpl internal constructor(
+    override val refreshScreenshotTimeout: Long,
+    override val graphicsLayer: GraphicsLayer,
+): ScreenshotState {
+
+    @Composable
+    override fun startRecording(): Flow<ImageBitmap> {
         return remember {
             flow {
                 while (true) {
@@ -34,7 +43,7 @@ class ScreenshotState internal constructor(
         }
     }
 
-    suspend fun takeScreenshot(): ImageBitmap {
+    override suspend fun takeScreenshot(): ImageBitmap {
         return graphicsLayer.toImageBitmap()
     }
 
