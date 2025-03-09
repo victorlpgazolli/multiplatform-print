@@ -8,19 +8,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import dev.victorlpgazolli.printer.App
 import dev.victorlpgazolli.printer.printerCommonDiModule
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
+import org.koin.compose.KoinApplication
+import org.koin.dsl.module
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startKoin {
-            androidContext(this@MainActivity)
-            androidLogger()
-            modules(printerCommonDiModule())
-        }
+
         setContent {
-            App()
+            KoinApplication(
+                application = {
+                    val androidModule = module { androidContext(this@MainActivity) }
+
+                    modules(
+                        androidModule + printerCommonDiModule()
+                    )
+                }
+            ) {
+                App()
+            }
         }
     }
 }
