@@ -30,6 +30,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinContext
 import org.koin.compose.koinInject
 import rememberScreenshotState
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 
