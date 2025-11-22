@@ -1,23 +1,36 @@
 package dev.victorlpgazolli.printer.demo
 
 import ScreenshotArea
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.unit.dp
 import dev.victorlpgazolli.printer.Printer
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinContext
 import org.koin.compose.koinInject
 import rememberScreenshotState
+import kotlin.time.Duration.Companion.seconds
 
 
 @Composable
@@ -34,7 +47,20 @@ fun App() {
 fun Content() {
     val coroutineScope = rememberCoroutineScope()
 
-    val screenshotState = rememberScreenshotState(1000)
+    val refreshRate = remember { 1.seconds }
+
+    val screenshotState = rememberScreenshotState(refreshRate)
+
+    var count by remember { mutableStateOf(0) }
+
+    LaunchedEffect(Unit) {
+        while (true) {
+            delay(1000)
+            count++
+        }
+    }
+
+    val screen by screenshotState.startRecording().collectAsState(null)
 
     val printer = koinInject<Printer>()
 
@@ -51,8 +77,19 @@ fun Content() {
         ) {
             Text("Print content")
         }
+
         ScreenshotArea(screenshotState) {
-            Demo()
+            Demo(count)
+        }
+
+        Spacer(Modifier.padding(top = 20.dp).background(Color.LightGray).fillMaxWidth())
+        Text("Recording of the content above using $refreshRate refresh rate.")
+
+        screen?.let {
+            Image(
+                bitmap = it,
+                contentDescription = "recording"
+            )
         }
     }
 }

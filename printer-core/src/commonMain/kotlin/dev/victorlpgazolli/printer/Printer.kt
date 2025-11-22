@@ -1,6 +1,9 @@
 package dev.victorlpgazolli.printer
 
 import androidx.compose.ui.graphics.ImageBitmap
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.withContext
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
 import kotlinx.io.okio.asOkioSink
@@ -13,20 +16,19 @@ interface PlatformPrinter {
 }
 
 interface Printer {
-    fun print(filePath: String)
-    fun print(imageBitmap: ImageBitmap)
+    suspend fun print(filePath: String)
+    suspend fun print(imageBitmap: ImageBitmap)
 }
 
 class PrinterImpl(
     private val platformPrinter: PlatformPrinter
-): Printer{
-    override fun print(filePath: String) {
-        println("printing: $filePath")
+): Printer {
+    override suspend fun print(filePath: String) = withContext(Dispatchers.IO) {
         platformPrinter.print(filePath)
     }
 
-    override fun print(imageBitmap: ImageBitmap) {
-        val tmpPath = "${FileSystem.SYSTEM_TEMPORARY_DIRECTORY}/file.bmp"
+    override suspend fun print(imageBitmap: ImageBitmap) = withContext(Dispatchers.IO) {
+        val tmpPath = "${FileSystem.SYSTEM_TEMPORARY_DIRECTORY}/file-${imageBitmap.hashCode()}.bmp"
 
         SystemFileSystem.sink(Path(tmpPath)).asOkioSink().buffer()
             .also { imageBitmap.encode(it) }
@@ -35,6 +37,5 @@ class PrinterImpl(
         print(tmpPath)
 
         SystemFileSystem.delete(Path(tmpPath))
-
     }
 }

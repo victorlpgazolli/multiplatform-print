@@ -80,14 +80,11 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
             implementation(libs.print)
-            api(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(libs.okio)
             implementation(libs.kotlin.io)
             implementation(libs.kotlin.io.okio)
-            api(libs.koin.core)
-            api(libs.koin.compose)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(libs.androidx.lifecycle.viewmodel)

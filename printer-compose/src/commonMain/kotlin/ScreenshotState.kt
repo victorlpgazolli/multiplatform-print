@@ -6,18 +6,21 @@ import androidx.compose.ui.graphics.rememberGraphicsLayer
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
+
 
 @Composable
-fun rememberScreenshotState(refreshScreenshotTimeout: Long? = null): ScreenshotState {
+fun rememberScreenshotState(refreshRate: Duration = 20.milliseconds): ScreenshotState {
     val graphicsLayer = rememberGraphicsLayer()
     return remember { ScreenshotStateImpl(
-        refreshScreenshotTimeout = refreshScreenshotTimeout ?: 20L,
+        refreshRate = refreshRate,
         graphicsLayer = graphicsLayer,
     ) }
 }
 
 interface ScreenshotState {
-    val refreshScreenshotTimeout: Long
+    val refreshRate: Duration
     val graphicsLayer: GraphicsLayer
 
     @Composable
@@ -27,7 +30,7 @@ interface ScreenshotState {
 
 
 class ScreenshotStateImpl internal constructor(
-    override val refreshScreenshotTimeout: Long,
+    override val refreshRate: Duration,
     override val graphicsLayer: GraphicsLayer,
 ): ScreenshotState {
 
@@ -37,7 +40,7 @@ class ScreenshotStateImpl internal constructor(
             flow {
                 while (true) {
                     emit(takeScreenshot())
-                    delay(refreshScreenshotTimeout)
+                    delay(refreshRate.inWholeMilliseconds)
                 }
             }
         }
