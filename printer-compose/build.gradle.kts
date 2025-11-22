@@ -13,8 +13,12 @@ plugins {
     alias(libs.plugins.mavenPublish)
 }
 
-group = "dev.victorlpgazolli.multiplatform-print-compose"
-version = "0.0.1"
+val groupId = "dev.victorlpgazolli.multiplatform-print"
+val artifactId = "printer-compose"
+val versionNumber = "0.0.1"
+
+group = "$groupId-compose"
+version = versionNumber
 
 kotlin {
 
@@ -65,22 +69,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.skiko)
                 implementation(compose.runtime)
                 implementation(compose.foundation)
             }
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.kotlin.test)
-            }
-        }
     }
 }
-
-val groupId = "dev.victorlpgazolli.multiplatform-print"
-val artifactId = "printer-compose"
-val versionNumber = "0.0.1"
 
 android {
     namespace = "dev.victorlpgazolli.multiplatform_print_compose"
