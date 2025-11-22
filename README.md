@@ -131,7 +131,7 @@ fun App() {
         }
     }
     // refreshRate param is optional, if not provided the default value is 20ms
-    val screenshotState by rememberScreenshotState(1.seconds)
+    val screenshotState = rememberScreenshotState(1.seconds)
 
     val recordedScreen by screenshotState.startRecording().collectAsState(null)
     
