@@ -15,7 +15,7 @@ plugins {
 
 val groupId = "dev.victorlpgazolli.multiplatform-print"
 val artifactId = "printer-core"
-val versionNumber = "0.0.1"
+val versionNumber = "1.0.0"
 
 group = "$groupId-core"
 version = versionNumber

@@ -15,7 +15,7 @@ plugins {
 
 val groupId = "dev.victorlpgazolli.multiplatform-print"
 val artifactId = "printer-compose"
-val versionNumber = "0.0.1"
+val versionNumber = "1.0.0"
 
 group = "$groupId-compose"
 version = versionNumber
