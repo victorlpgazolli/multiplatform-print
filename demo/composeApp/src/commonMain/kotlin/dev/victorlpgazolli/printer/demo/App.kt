@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -30,6 +31,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinContext
 import org.koin.compose.koinInject
 import rememberScreenshotState
+import kotlin.time.Duration.Companion.milliseconds
 
 import kotlin.time.Duration.Companion.seconds
 
@@ -48,11 +50,12 @@ fun App() {
 fun Content() {
     val coroutineScope = rememberCoroutineScope()
 
-    val refreshRate = remember { 1.seconds }
+    val refreshRate = remember { 10.milliseconds }
 
     val screenshotState = rememberScreenshotState(refreshRate)
 
     var count by remember { mutableStateOf(0) }
+    var filePath by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
         while (true) {
@@ -66,6 +69,30 @@ fun Content() {
     val printer = koinInject<Printer>()
 
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+        TextField(
+            value = filePath ?: "",
+            onValueChange = {
+                filePath = it
+            }
+        )
+        Button(
+            enabled = filePath != null,
+            onClick = {
+                coroutineScope.launch {
+                    screenshotState
+                        .takeScreenshot()
+                        .also {
+                            filePath?.let {
+                                printer.print(it)
+                            }
+                        }
+                }
+            },
+            modifier = Modifier.padding(20.dp)
+        ) {
+            Text("Print selected path")
+        }
+
         Button(
             onClick = {
                 coroutineScope.launch {
