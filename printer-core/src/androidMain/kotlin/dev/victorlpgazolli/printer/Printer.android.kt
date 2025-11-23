@@ -3,6 +3,8 @@ package dev.victorlpgazolli.printer
 import android.content.Context
 import android.graphics.BitmapFactory
 import androidx.print.PrintHelper
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import java.io.File
 import java.io.InputStream
 
@@ -22,3 +24,6 @@ class AndroidPrinter(
             }
     }
 }
+
+actual val defaultAsyncDispatcher: CoroutineDispatcher
+    get() = Dispatchers.IO

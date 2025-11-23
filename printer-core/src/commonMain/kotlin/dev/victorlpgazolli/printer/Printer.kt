@@ -1,8 +1,7 @@
 package dev.victorlpgazolli.printer
 
 import androidx.compose.ui.graphics.ImageBitmap
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem
@@ -20,11 +19,13 @@ interface Printer {
     suspend fun print(imageBitmap: ImageBitmap)
 }
 
+expect val defaultAsyncDispatcher : CoroutineDispatcher
+
 class PrinterImpl(
     private val platformPrinter: PlatformPrinter,
 ): Printer {
 
-    override suspend fun print(filePath: String) = withContext(Dispatchers.IO) {
+    override suspend fun print(filePath: String) = withContext(defaultAsyncDispatcher) {
         platformPrinter.print(filePath)
     }
 
