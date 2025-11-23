@@ -3,6 +3,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.layer.GraphicsLayer
 import androidx.compose.ui.graphics.rememberGraphicsLayer
+import androidx.compose.ui.unit.IntSize
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -39,7 +40,7 @@ class ScreenshotStateImpl internal constructor(
         return remember {
             flow {
                 while (true) {
-                    emit(takeScreenshot())
+                    if (graphicsLayer.area > 0) emit(takeScreenshot())
                     delay(refreshRate.inWholeMilliseconds)
                 }
             }
@@ -49,5 +50,7 @@ class ScreenshotStateImpl internal constructor(
     override suspend fun takeScreenshot(): ImageBitmap {
         return graphicsLayer.toImageBitmap()
     }
-
 }
+
+val GraphicsLayer.area : Int
+    get() = size.width * size.height

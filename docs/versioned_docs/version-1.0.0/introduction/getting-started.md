@@ -27,7 +27,7 @@ repositories {
 
 ```kotlin
 dependencies {
-    val multiplatformPrint = "1.1.0"
+    val multiplatformPrint = "1.0.0"
 
     // Printer core utils
     implementation("dev.victorlpgazolli.multiplatform-print:printer-core:$multiplatformPrint")
@@ -42,7 +42,7 @@ dependencies {
 
 ```kotlin
 [versions]
-multiplatformPrint = "1.1.0"
+multiplatformPrint = "1.0.0"
 
 [libraries]
 multiplatform-print-core = { group = "dev.victorlpgazolli.multiplatform-print", name = "printer-core", version.ref = "multiplatformPrint" }

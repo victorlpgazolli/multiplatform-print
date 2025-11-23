@@ -56,7 +56,6 @@ fun App() {
 
 1. Creates a loop based on refreshRate and returns a `Flow<ImageBitmap>`
 2. Renders your composable using the state’s GraphicsLayer
-3. For every iteration it checks if the graphics layer has area higher than 0, if not it skips the frame
-4. When the area is higher than 0, it converts the graphics layer from your composable to a `ImageBitmap`
-5. Emits the latest `ImageBitmap`
+3. For every iteration it converts the graphics layer from your composable to a `ImageBitmap`
+4. Emit the latest `ImageBitmap`
 
