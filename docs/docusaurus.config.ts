@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import packageJson from './package.json'
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -39,8 +40,8 @@ const config: Config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: '1.1.0',
-              path: '1.1.0',
+              label: packageJson.version,
+              path: packageJson.version,
             },
           },
           sidebarPath: './sidebars.ts',
@@ -90,7 +91,7 @@ const config: Config = {
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/1.0.0/introduction/getting-started',
+              to: `/docs/${packageJson.version}/introduction/getting-started`,
             },
           ],
         },
