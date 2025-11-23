@@ -27,10 +27,10 @@ Main package to print stuff, the library exposes a common API:
 interface Printer {
 //  send to printer any file, regardless of the extension. 
 //  no error handling, ill just trust you in this one
-    fun print(filePath: String)
+    suspend fun print(filePath: String)
     
 //  send to printer an ImageBitmap, in case you want to print a custom image
-    fun print(imageBitmap: ImageBitmap)
+    suspend fun print(imageBitmap: ImageBitmap)
 }
 ```
 
@@ -65,8 +65,8 @@ Library used to take screenshots of `@Composables` or just record them in a set 
 ```kotlin
 
 interface ScreenshotState {
-//  consider the following param as "frame rate", default 20ms 
-    val refreshScreenshotTimeout: Long
+//  time delay between each screenshot, default 20ms 
+    val refreshRate: Duration
     
 //  graphicsLayer used to draw the content of the composable to a ImageBitmap
     val graphicsLayer: GraphicsLayer
@@ -81,6 +81,7 @@ interface ScreenshotState {
 // Composable that wraps the content to be recorded/taken a screenshot
 fun ScreenshotArea(
     screenshotState: ScreenshotState,
+    modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ): Unit {}
 
@@ -96,7 +97,6 @@ fun ScreenshotArea(
 @Composable
 fun App() {
     val screenshotState = rememberScreenshotState()
-
 
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         Button(
@@ -130,13 +130,13 @@ fun App() {
             count++
         }
     }
-    // refreshScreenshotTimeout param is optional, if not provided the default value is 20ms
-    val screenshotState by rememberScreenshotState(1000)
-        .startRecording()
-        .collectAsState(null)
+    // refreshRate param is optional, if not provided the default value is 20ms
+    val screenshotState = rememberScreenshotState(1.seconds)
 
+    val recordedScreen by screenshotState.startRecording().collectAsState(null)
+    
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        screenshotState?.let {
+        recordedScreen?.let {
             Image(
                 bitmap = it,
                 contentDescription = "recording"

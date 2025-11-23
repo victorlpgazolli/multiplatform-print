@@ -1,0 +1,25 @@
+{
+  "tutorialSidebar": [
+    {
+      "type": "category",
+      "label": "Introduction",
+      "collapsible": true,
+      "collapsed": false,
+      "items": ["introduction/getting-started", "introduction/demo"]
+    },
+    {
+      "type": "category",
+      "label": "Using Print Core",
+      "collapsible": true,
+      "collapsed": false,
+      "items": ["print-core/print-any-file", "print-core/print-bitmap"]
+    },
+    {
+      "type": "category",
+      "label": "Using Print Compose",
+      "collapsible": true,
+      "collapsed": false,
+      "items": ["print-compose/screenshot"]
+    }
+  ]
+}

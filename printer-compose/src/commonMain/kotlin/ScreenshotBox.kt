@@ -9,10 +9,11 @@ import androidx.compose.ui.graphics.layer.drawLayer
 @Composable
 fun ScreenshotArea(
     screenshotState: ScreenshotState,
+    modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .drawWithContent {
 
                 screenshotState.graphicsLayer.record {

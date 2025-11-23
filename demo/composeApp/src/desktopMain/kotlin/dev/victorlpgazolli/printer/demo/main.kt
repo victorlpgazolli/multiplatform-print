@@ -2,7 +2,6 @@ package dev.victorlpgazolli.printer.demo
 
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import dev.victorlpgazolli.printer.printerCommonDiModule
 import org.koin.compose.KoinApplication
 
 

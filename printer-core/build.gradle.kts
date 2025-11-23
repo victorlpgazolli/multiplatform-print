@@ -13,8 +13,12 @@ plugins {
     alias(libs.plugins.kotlinKsp)
 }
 
-group = "dev.victorlpgazolli.multiplatform-print-core"
-version = "0.0.1"
+val groupId = "dev.victorlpgazolli.multiplatform-print"
+val artifactId = "printer-core"
+val versionNumber = "1.0.0"
+
+group = "$groupId-core"
+version = versionNumber
 
 kotlin {
 
@@ -80,29 +84,20 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
             implementation(libs.print)
-            api(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(libs.okio)
             implementation(libs.kotlin.io)
             implementation(libs.kotlin.io.okio)
-            api(libs.koin.core)
-            api(libs.koin.compose)
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 }
-
-val groupId = "dev.victorlpgazolli.multiplatform-print"
-val artifactId = "printer-core"
-val versionNumber = "0.0.1"
 
 android {
     namespace = "dev.victorlpgazolli.multiplatform_print_core"

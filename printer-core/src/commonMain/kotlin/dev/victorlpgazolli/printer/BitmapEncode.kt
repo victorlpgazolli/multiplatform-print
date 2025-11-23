@@ -7,13 +7,13 @@ import androidx.compose.ui.graphics.toPixelMap
 import okio.BufferedSink
 
 
-fun ImageBitmap.encode(sink: BufferedSink) {
+internal fun ImageBitmap.encode(sink: BufferedSink) {
     val bitmapWrapper = BitmapWrapper(this.toPixelMap())
     encode(bitmapWrapper, sink)
 }
 
 
-class BitmapWrapper(
+private class BitmapWrapper(
     private val pixels: PixelMap,
 ) {
     val width: Int = pixels.width
@@ -28,7 +28,7 @@ class BitmapWrapper(
     fun blue(x: Int, y: Int): Int = (pixels[x, y].blue * 255).toInt()
 }
 
-fun encode(bitmap: BitmapWrapper, sink: BufferedSink) {
+private fun encode(bitmap: BitmapWrapper, sink: BufferedSink) {
     val height = bitmap.height
     val width = bitmap.width
     val bytesPerPixel = 3
