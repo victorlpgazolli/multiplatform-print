@@ -2,11 +2,12 @@ package dev.victorlpgazolli.printer
 
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
+import dev.victorlpgazolli.printer.demo.App
 import kotlinx.browser.document
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
     ComposeViewport(document.body!!) {
-        App(){}
+        App()
     }
 }

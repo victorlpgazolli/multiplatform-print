@@ -1,5 +1,7 @@
 package dev.victorlpgazolli.printer
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import java.io.FileInputStream
 import javax.print.DocFlavor
 import javax.print.PrintServiceLookup
@@ -18,3 +20,6 @@ class DesktopPrinter(): PlatformPrinter {
         }
     }
 }
+
+actual val defaultAsyncDispatcher: CoroutineDispatcher
+    get() = Dispatchers.IO

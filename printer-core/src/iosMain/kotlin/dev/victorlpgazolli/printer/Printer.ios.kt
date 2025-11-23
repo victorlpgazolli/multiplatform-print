@@ -1,5 +1,8 @@
 package dev.victorlpgazolli.printer
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import platform.Foundation.NSURL
 import platform.UIKit.UIPrintInfo
 import platform.UIKit.UIPrintInfoOutputType
@@ -22,3 +25,5 @@ class IosPrinter: PlatformPrinter {
     }
 }
 
+actual val defaultAsyncDispatcher: CoroutineDispatcher
+    get() = Dispatchers.IO
