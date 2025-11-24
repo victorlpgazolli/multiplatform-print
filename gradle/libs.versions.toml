@@ -12,7 +12,7 @@ maven-publish = "0.30.0"
 okio = "3.9.0"
 kotlin-io = "0.6.0"
 kotlin-io-okio = "0.8.1"
-koin-version = "4.0.2"
+koin-version = "4.1.1"
 ksp-version = "2.1.0-1.0.29"
 print = "1.0.0"
 
