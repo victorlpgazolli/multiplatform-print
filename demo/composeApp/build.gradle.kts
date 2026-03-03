@@ -69,8 +69,8 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(project(":printer-core"))
-            implementation(project(":printer-compose"))
+            implementation(libs.multiplatform.print.core)
+            implementation(libs.multiplatform.print.compose)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
