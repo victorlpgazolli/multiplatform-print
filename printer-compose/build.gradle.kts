@@ -22,19 +22,6 @@ version = versionNumber
 
 kotlin {
 
-    publishing {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = URI("https://maven.pkg.github.com/victorlpgazolli/multiplatform-print")
-                credentials {
-                    username = System.getenv("GITHUB_ACTOR")
-                    password = System.getenv("PUBLISH_TOKEN")
-                }
-            }
-        }
-    }
-
     androidTarget {
         publishLibraryVariants("release")
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
@@ -49,7 +36,7 @@ kotlin {
     jvm("desktop"){}
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "printer_compose"
+        outputModuleName.set("printer_compose")
         browser {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path

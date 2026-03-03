@@ -22,18 +22,6 @@ version = versionNumber
 
 kotlin {
 
-    publishing {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = URI("https://maven.pkg.github.com/victorlpgazolli/multiplatform-print")
-                credentials {
-                    username = System.getenv("GITHUB_ACTOR")
-                    password = System.getenv("PUBLISH_TOKEN")
-                }
-            }
-        }
-    }
     androidTarget {
         publishLibraryVariants("release")
 
