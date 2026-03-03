@@ -124,6 +124,10 @@ android {
 
 
 mavenPublishing {
+    publishToMavenCentral()
+
+    signAllPublications()
+
     coordinates(
         groupId = groupId,
         artifactId = artifactId,
