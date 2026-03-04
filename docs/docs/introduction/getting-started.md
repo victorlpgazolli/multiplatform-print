@@ -8,19 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Getting Started
 
-1. Add github gradle registry to your repositories ([github oficial documentation](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry))
-
-```kotlin
-repositories {
-    // ...other repositories...
-    maven("https://maven.pkg.github.com/victorlpgazolli/multiplatform-print") {
-        username = System.getenv("GITHUB_USERNAME")
-        password = System.getenv("GITHUB_PAT_TOKEN")
-    }
-}
-```
-
-2. Add the dependencies to your module’s build.gradle file
+1. Add the dependencies to your module’s build.gradle.kts file
 
 <Tabs>
   <TabItem value="dependencies" label="Dependencies" default>
@@ -42,13 +30,18 @@ dependencies {
 
 ```kotlin
 [versions]
-multiplatformPrint = "1.1.0"
+multiplatform-print = "1.1.0"
 
 [libraries]
-multiplatform-print-core = { group = "dev.victorlpgazolli.multiplatform-print", name = "printer-core", version.ref = "multiplatformPrint" }
-multiplatform-print-compose = { group = "dev.victorlpgazolli.multiplatform-print", name = "printer-compose", version.ref = "multiplatformPrint" }
+multiplatform-print-compose = { group = "dev.victorlpgazolli.multiplatform-print", name = "printer-compose", version.ref = "multiplatform-print" }
+multiplatform-print-core = { group = "dev.victorlpgazolli.multiplatform-print", name = "printer-core", version.ref = "multiplatform-print" }
 ```
-
+```kotlin
+dependencies {
+    implementation(libs.multiplatform.print.core)
+    implementation(libs.multiplatform.print.compose)
+}
+```
 
   </TabItem>
 </Tabs>
